@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Contando 1 a 100</title>
+    <link rel="stylesheet" type="text/css" href="../../css/conteo/conteo100.css">
+</head>
+
+<body>
+    <h1>¡Contemos Juntos!</h1>
+    <h3>Pruebas para contar del 1 al 100</h3>
+    <div id="user-info">
+        <span id="username" class="username"></span>
+        <button class="signout" id="signout" type="button">Sign Out</button>
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li><a href="../main.html">Inicio</a></li>
+            <li><a href="../teoria.html">Teoría</a></li>
+            <li><a href="../frutas.html">Identifiquemos Frutas</a></li>
+            <li><a href="../sumas.html">Sumas Divertidas</a></li>
+            <li><a href="../conteo.html">Contemos Juntos</a></li>
+            <li><a href="../ayuda.html">Ayuda</a></li>
+        </ul>
+    </nav>
+    <br>
+    <!-- Contenedor para las pruebas -->
+    <div id="tests-container">
+        <!-- Prueba 1: Arrastra la barra hasta el número 20 -->
+        <div class="test" id="test1">
+            <h2>Nivel 1</h2>
+            <p>Arrastra la barra hasta el número 20:</p>
+            <input type="range" id="slider1" min="1" max="100" value="1" step="1">
+            <span id="sliderValue1">1</span><br>
+            <button id="checkSlider1">Comprobar</button>
+        </div>
+        <!-- Prueba 2: ¿Cuántos números hay del 1 al 10? -->
+        <div class="test" id="test2" style="display: none;">
+            <h2>Nivel 2</h2>
+            <p>¿Cuántos números hay del 1 al 10?</p>
+            <input type="radio" name="answer2" value="9"> 9<br>
+            <input type="radio" name="answer2" value="10"> 10<br>
+            <input type="radio" name="answer2" value="11"> 11<br>
+            <button id="checkAnswer2">Comprobar</button>
+        </div>
+        <!-- Prueba 3: Selecciona los números en secuencia del 1 al 10 -->
+        <div class="test" id="test3" style="display: none;">
+            <h2>Nivel 3</h2>
+            <p>Selecciona los números en secuencia del 1 al 10:</p>
+            <div id="number-buttons"></div>
+            <button id="checkSelection">Comprobar</button>
+        </div>
+        <!-- Prueba 4: Completa el antes y después -->
+        <div class="test" id="test4" style="display: none;">
+            <h2>Nivel 4</h2>
+            <p>¿Qué número viene antes de 30?</p>
+            <input type="text" id="before30"><br>
+            <p>¿Qué número viene después de 30?</p>
+            <input type="text" id="after30"><br>
+            <button id="checkBeforeAfter30">Comprobar</button>
+        </div>
+        <!-- Prueba 5: ¿Cuántos objetos hay en cada imagen? -->
+        <div class="test" id="test5" style="display: none;">
+            <h2>Nivel 5</h2>
+            <p>¿Cuántos objetos hay en cada imagen?</p>
+        <div class="images-container">
+            <img src="../../img/conteo_img/tresArboles.png" alt="Objetos 1" class="count-image">
+            <input type="number" id="count1" placeholder="¿Cuántos?">
+            <img src="../../img/conteo_img/cuatroArboles.png" alt="Objetos 2" class="count-image">
+            <input type="number" id="count2" placeholder="¿Cuántos?">
+            <img src="../../img/conteo_img/seisArboles.png" alt="Objetos 3" class="count-image">
+            <input type="number" id="count3" placeholder="¿Cuántos?">
+        </div>
+            <button id="checkImageCounts">Comprobar</button>
+        </div>
+    </div>
+    <!-- Contenedor para los resultados -->
+    <div id="results-container" style="display: none;">
+        <h2>Resultados</h2>
+        <p id="test-results"></p>
+    </div>
+    <br>
+    <div class="leaderboard-container">
+        <a href="../puntos/puntos_conteo.html">
+            <button id="leaderboard-btn"><span>Leaderboard</span></button>
+        </a>
+    </div>
+    
+    <br>
+    <br>
+    <footer>
+        <p>&copy; 2024 BrainPop. Todos los derechos reservados.</p>
+    </footer>
+    <!-- Scripts de Firebase y del proyecto -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+        import { getDatabase } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+        import { initNumberSelection, shuffleButtons, checkSelection, checkAnswer, checkSlider, updateSliderValue, checkBeforeAfter, checkImageCounts, showResultsOrNextTest, showResults, setFirebaseDependencies } from "../../js/conteo_100.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBfFyy_bc3-cN15uNtOtqrtTtX72nvIA-w",
+            authDomain: "des5-547e9.firebaseapp.com",
+            databaseURL: "https://des5-547e9-default-rtdb.firebaseio.com",
+            projectId: "des5-547e9",
+            storageBucket: "des5-547e9.appspot.com",
+            messagingSenderId: "427136347004",
+            appId: "1:427136347004:web:98d88295fcebe8deb192f9",
+            measurementId: "G-SXRPVQHQHY"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+
+        // Pasar auth y db a conteo_100.js
+        setFirebaseDependencies(auth, db);
+
+        // Inicializar las pruebas
+        document.addEventListener('DOMContentLoaded', function () {
+            initNumberSelection();
+
+            document.getElementById('slider1').addEventListener('change', () => updateSliderValue('sliderValue1', 'slider1'));
+            document.getElementById('checkSlider1').addEventListener('click', () => checkSlider(1));
+            document.getElementById('checkAnswer2').addEventListener('click', () => checkAnswer(2));
+            document.getElementById('checkSelection').addEventListener('click', checkSelection);
+            document.getElementById('checkBeforeAfter30').addEventListener('click', () => checkBeforeAfter(30, 4));
+            document.getElementById('checkImageCounts').addEventListener('click', checkImageCounts);
+        });
+
+    </script>
+    <script src="../../js/signout2.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/fondo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.encabezado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.encabezado img {
+    height: 120px;
+    width: 120px;
+}
+
+header, h3 {
+    color: gold;
+    font-weight: bold;
+    font-family: cursive;
+}
+
+header {
+    font-size: 70px;
+    margin-top: 50px;
+}
+
+h3 {
+    font-size: 35px;
+}
+
+form {
+    width: 400px;
+    height: auto;
+    margin: 0px auto;
+}
+
+.login {
+    border: 7px solid saddlebrown;
+    border-radius: 4px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login input {
+    height: 30px;
+}
+
+.login label {
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+.login label[for="password"], .login label[for="email"], .login label[for="confirm-password"] {
+    margin-top: 15px;
+}
+
+button[type="submit"] {
+    margin-top: 20px;
+    width: 100%;
+    height: 30px;
+    background-color: whitesmoke;
+}
+
+footer {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    color: #333;
+}
+
+.register {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register p {
+    color: whitesmoke;
+    font-family: Arial, sans-serif;
+}
+
+.register a {
+    color: gold;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register a:hover {
+    text-decoration: underline;
+}

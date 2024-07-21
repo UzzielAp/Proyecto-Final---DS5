@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Números Par e Impar</title>
+    <link rel="stylesheet" type="text/css" href="../../css/conteo/par.css">
+</head>
+<body>
+    <h1>¡Identifiquemos los números!</h1>
+    <h3>Par o Impar</h3>
+    <div id="user-info">
+        <span id="username" class="username"></span>
+        <button class="signout" id="signout" type="button">Sign Out</button>
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li><a href="../main.html">Inicio</a></li>
+            <li><a href="../teoria.html">Teoría</a></li>
+            <li><a href="../frutas.html">Identifiquemos Frutas</a></li>
+            <li><a href="../sumas.html">Sumas Divertidas</a></li>
+            <li><a href="../conteo.html">Contemos Juntos</a></li>
+            <li><a href="../ayuda.html">Ayuda</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenedor para las pruebas -->
+    <div id="tests-container">
+        <!-- Prueba 1: Escribe los números pares del 0 al 20 -->
+        <div class="test" id="test1">
+            <h2>Nivel 1</h2>
+            <p>Escribe los números pares del 0 al 20 (separados por comas):</p>
+            <input type="text" id="evenNumbers" placeholder="Ej: 0, 2, 4, ...">
+            <button onclick="checkEvenNumbers()">Comprobar</button>
+        </div>
+        <!-- Prueba 2: Escribe los números impares del 20 al 30 -->
+        <div class="test" id="test2" style="display: none;">
+            <h2>Nivel 2</h2>
+            <p>Escribe los números impares del 20 al 30 (separados por comas):</p>
+            <input type="text" id="oddNumbers" placeholder="Ej: 21, 23, 25, ...">
+            <button onclick="checkOddNumbers()">Comprobar</button>
+        </div>
+        <!-- Prueba 3: Selecciona los números pares en orden ascendente -->
+        <div class="test" id="test3" style="display: none;">
+            <h2>Nivel 3</h2>
+            <p>Selecciona los números pares en orden ascendente:</p>
+            <div id="even-buttons"></div>
+            <button onclick="checkEvenSelection()">Comprobar</button>
+        </div>
+        <!-- Prueba 4: ¿Par o Impar? -->
+        <div class="test" id="test4" style="display: none;">
+            <h2>Nivel 4</h2>
+            <p>Selecciona si el número es par o impar:</p>
+            <div id="par-impar-questions"></div>
+            <button onclick="checkParImpar()">Comprobar</button>
+        </div>
+        <!-- Prueba 5: Selecciona imágenes de números impares -->
+        <div class="test" id="test5" style="display: none;">
+            <h2>Nivel 5</h2>
+            <p>Selecciona las imágenes de números impares:</p>
+            <div class="images-container">
+                <img src="../../img/conteo_img/Numero2.png" alt="2" class="count-image" onclick="selectImage(this)">
+                <img src="../../img/conteo_img/Numero3.png" alt="3" class="count-image" onclick="selectImage(this)">
+                <img src="../../img/conteo_img/Numero4.png" alt="4" class="count-image" onclick="selectImage(this)">
+                <img src="../../img/conteo_img/Numero5.png" alt="5" class="count-image" onclick="selectImage(this)">
+            </div>
+            <button onclick="checkOddImages()">Comprobar</button>
+        </div>
+    </div>
+
+    <!-- Contenedor para los resultados -->
+    <div id="results-container" style="display: none;">
+        <h2>¡Has completado los niveles!</h2>
+        <div id="test-results"></div>
+    </div>
+    
+    <br>
+    <div class="leaderboard-container">
+        <a href="../puntos/puntos_parimpar.html">
+            <button id="leaderboard-btn"><span>Leaderboard</span></button>
+        </a>
+    </div>
+
+    <br>
+    <footer>
+        <p>&copy; 2024 BrainPop. Todos los derechos reservados.</p>
+    </footer>
+    <script type="module" src="../../js/par_impar.js"></script>
+    <script src="../../js/signout2.js"></script>
+    <!-- Script personalizado para las pruebas -->
+</body>
+</html>
+
